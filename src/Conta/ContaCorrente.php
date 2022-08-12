@@ -9,11 +9,13 @@ class ContaCorrente extends Conta
 {
     protected float $saldo = 0;
     protected object $titular;
+    protected Agencia $agencia;
 
-    public function __construct(float $saldo, Titular $titular)
+    public function __construct(float $saldo, Titular $titular, Agencia $agencia)
     {
         $this->saldo = $saldo;
         $this->titular = $titular;
+        $this->agencia = $agencia;
     }
 
     public function verificaSaldo(): float
@@ -24,7 +26,7 @@ class ContaCorrente extends Conta
     public function depositar(float $valor): void
     {
         $this->saldo += $valor;
-        echo "Depósito de {$valor} efetuado com sucesso" . PHP_EOL;
+        echo "Depósito de $valor efetuado com sucesso" . PHP_EOL;
     }
 
     /**
@@ -37,7 +39,7 @@ class ContaCorrente extends Conta
                 throw new Exception('Saldo insuficiente');
             }
             $this->saldo -= $valor;
-            echo "Saque de R$ {$valor} foi efetuado com sucesso" . PHP_EOL;
+            echo "Saque de R$ $valor foi efetuado com sucesso" . PHP_EOL;
         } catch (Exception $exception)  {
             echo $exception->getMessage();
         }

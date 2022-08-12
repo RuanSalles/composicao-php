@@ -6,6 +6,7 @@ abstract class Conta
 {
     protected object $titular;
     protected float $saldo;
+    protected Agencia $agencia;
 
 
     abstract function verificaSaldo(): float;
