@@ -11,4 +11,5 @@ abstract class Conta
     abstract function verificaSaldo(): float;
     abstract function depositar(float $valor): void;
     abstract function sacar(float $valor): void;
+    abstract function mostrarSaldo():mixed;
 }

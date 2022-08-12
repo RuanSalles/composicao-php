@@ -24,6 +24,7 @@ class ContaCorrente extends Conta
     public function depositar(float $valor): void
     {
         $this->saldo += $valor;
+        echo "Depósito de {$valor} efetuado com sucesso" . PHP_EOL;
     }
 
     /**
@@ -36,8 +37,14 @@ class ContaCorrente extends Conta
                 throw new Exception('Saldo insuficiente');
             }
             $this->saldo -= $valor;
+            echo "Saque de R$ {$valor} foi efetuado com sucesso" . PHP_EOL;
         } catch (Exception $exception)  {
             echo $exception->getMessage();
         }
+    }
+
+    function mostrarSaldo(): string
+    {
+        return "Seu saldo é de R$ $this->saldo";
     }
 }
