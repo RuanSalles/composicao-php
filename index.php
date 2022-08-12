@@ -11,14 +11,3 @@ try {
 } catch (Exception $exception) {
     return $exception->getMessage();
 }
-
-var_dump($contaCorrente);
-$contaCorrente->depositar(8901);
-var_dump($contaCorrente);
-try {
-    $contaCorrente->sacar(12);
-} catch (Exception $e) {
-    echo $e->getMessage();
-}
-
-var_dump($contaCorrente);
