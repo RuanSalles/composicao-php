@@ -3,18 +3,29 @@
 namespace App\Conta;
 
 use App\Conta\Interfaces\ContaInterface;
+use Exception;
 
 abstract class Conta implements ContaInterface
 {
+    /** @var object */
     protected object $titular;
+    /** @var float */
     protected float $saldo;
+    /** @var Agencia */
     protected Agencia $agencia;
 
+    /**
+     * @return float
+     */
     public function verificaSaldo(): float
     {
         return $this->saldo;
     }
 
+    /**
+     * @param float $valor
+     * @return void
+     */
     public function depositar(float $valor): void
     {
         $this->saldo += $valor;
@@ -37,6 +48,9 @@ abstract class Conta implements ContaInterface
         }
     }
 
+    /**
+     * @return string
+     */
     function mostrarSaldo(): string
     {
         return "Seu saldo é de R$ $this->saldo";
