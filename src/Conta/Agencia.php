@@ -2,25 +2,35 @@
 
 namespace App\Conta;
 
-use App\ObjectValues\Email;
+
 use App\ObjectValues\Endereco;
+use App\Traits\Email;
 
 class Agencia
 {
+    use Email;
+
     private Endereco $enderecoAgencia;
     private string $telefone;
     private string $numeroAgencia;
-    private Email $email;
+    private string $email;
 
-    public function __construct(Endereco $enderecoagencia, string $telefone, string $numeroAgencia, Email $email)
+    /**
+     * @throws \Exception
+     */
+    public function __construct(Endereco $enderecoagencia, string $telefone, string $numeroAgencia, string $email)
     {
         $this->enderecoAgencia = $enderecoagencia;
         $this->telefone = $telefone;
         $this->numeroAgencia = $numeroAgencia;
-        $this->email = $email;
+        $this->email = $this->validaEmail($email);
+
+        if (!$this->email) {
+            throw new \Exception('Email inválido');
+        }
     }
 
-    public function pegarEmailAgencia(): Email
+    public function pegarEmailAgencia(): string
     {
         return $this->email;
     }
